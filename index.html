@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para a Minha Nega 💙 | Nossa História</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================================
+       1. CONFIGURAÇÕES GERAIS E TEMAS (AZUL E PRATA)
+       ========================================================= */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary-blue: #0b1d3a;
+      --secondary-blue: #1e3c72;
+      --light-blue: #4a90e2;
+      --accent-blue: #00d2ff;
+      --silver-glow: linear-gradient(135deg, #e0e0e0 0%, #ffffff 50%, #a6b8c7 100%);
+      --glass-bg: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.18);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 50%, #112244 100%);
+      color: #ffffff;
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      padding-bottom: 60px;
+      position: relative;
+    }
+
+    /* Canvas de fundo para estrelas */
+    #starsCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Scrollbar personalizada */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1d3a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #4a90e2;
+      border-radius: 5px;
+    }
+
+    /* Efeito de texto prateado brilhante */
+    .silver-text {
+      background: var(--silver-glow);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================================================
+       2. CABEÇALHO & HERO SECTION
+       ========================================================= */
+    header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      animation: fadeInDown 1.2s ease-out;
+    }
+
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 4rem;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      font-size: 1.15rem;
+      color: #d1e3ff;
+      font-weight: 300;
+    }
+
+    .bday-badge {
+      display: inline-block;
+      margin-top: 15px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid var(--glass-border);
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      color: #e0f0ff;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* =========================================================
+       3. CRONÔMETRO DE TEMPO JUNTOS
+       ========================================================= */
+    .timer-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 35px 20px;
+      text-align: center;
+      margin: 30px 0 40px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    .timer-section h2 {
+      font-size: 1.35rem;
+      margin-bottom: 25px;
+      color: #b3d1ff;
+      font-weight: 500;
+    }
+
+    .timer-display {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .time-box {
+      background: rgba(11, 29, 58, 0.7);
+      border-radius: 16px;
+      padding: 18px 15px;
+      min-width: 90px;
+      border: 1px solid rgba(130, 177, 255, 0.3);
+      box-shadow: inset 0 0 10px rgba(0,210,255,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .time-box:hover {
+      transform: translateY(-4px);
+    }
+
+    .time-box span {
+      display: block;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.1;
+    }
+
+    .time-box label {
+      font-size: 0.8rem;
+      color: #a0c4ff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 5px;
+      display: block;
+    }
+
+    /* =========================================================
+       4. SEÇÃO MÚSICA - HENRIQUE & JULIANO
+       ========================================================= */
+    .music-card {
+      background: rgba(0, 0, 0, 0.35);
+      border-radius: 20px;
+      padding: 25px;
+      text-align: center;
+      margin-bottom: 40px;
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .music-card h3 {
+      font-size: 1.3rem;
+      color: #9eccff;
+      margin-bottom: 8px;
+    }
+
+    .music-card p {
+      font-size: 0.9rem;
+      color: #c0d8ff;
+      margin-bottom: 15px;
+    }
+
+    .music-iframe {
+      border-radius: 14px;
+      width: 100%;
+      max-width: 520px;
+      height: 85px;
+      border: none;
+    }
+
+    /* =========================================================
+       5. CARTINHAS INTERATIVAS (POP-UPS / MODAIS)
+       ========================================================= */
+    .section-title {
+      text-align: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 3rem;
+      margin: 50px 0 15px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #b3d1ff;
+      margin-bottom: 30px;
+      font-size: 0.95rem;
+    }
+
+    .letters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .letter-btn {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      padding: 25px 20px;
+      border-radius: 20px;
+      color: #ffffff;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: all 0.35s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .letter-btn:hover {
+      background: rgba(74, 144, 226, 0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 25px rgba(0, 210, 255, 0.35);
+      border-color: var(--accent-blue);
+    }
+
+    .letter-btn .icon {
+      font-size: 2.5rem;
+    }
+
+    /* Modais */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 12, 26, 0.88);
+      backdrop-filter: blur(8px);
+      z-index: 10000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: linear-gradient(145deg, #18325a, #0b1d3a);
+      border: 2px solid #82b1ff;
+      border-radius: 24px;
+      max-width: 620px;
+      width: 100%;
+      padding: 35px;
+      position: relative;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      animation: modalPop 0.35s ease-out;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.75); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-content h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2.4rem;
+      color: #9eccff;
+      margin-bottom: 18px;
+    }
+
+    .modal-content p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #e2f0ff;
+      margin-bottom: 25px;
+      text-align: justify;
+    }
+
+    .close-btn {
+      background: linear-gradient(45deg, #4a90e2, #00d2ff);
+      color: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      float: right;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+    }
+
+    .close-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+    }
+
+    /* =========================================================
+       6. GERADOR INTERATIVO DE MOTIVOS PARA TE AMAR
+       ========================================================= */
+    .compliment-box {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 50px;
+      backdrop-filter: blur(10px);
+    }
+
+    .compliment-box h3 {
+      font-size: 1.4rem;
+      color: #9eccff;
+      margin-bottom: 15px;
+    }
+
+    .compliment-text {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: #ffffff;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 15px 0;
+      padding: 10px;
+    }
+
+    .action-btn {
+      background: linear-gradient(45deg, #2a5298, #4a90e2);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+    }
+
+    .action-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.6);
+      background: linear-gradient(45deg, #4a90e2, #00d2ff);
+    }
+
+    /* =========================================================
+       7. MURAL DE DETALHES & GOSTOS DELA (GRID)
+       ========================================================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      margin-bottom: 50px;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      border-radius: 20px;
+      padding: 22px;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(130, 177, 255, 0.5);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: #9eccff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #d1e3ff;
+    }
+
+    /* =========================================================
+       8. LINHA DO TEMPO (2022 - 2026)
+       ========================================================= */
+    .timeline {
+      position: relative;
+      border-left: 3px solid #4a90e2;
+      margin: 30px 0 50px 20px;
+      padding-left: 25px;
+    }
+
+    .timeline-item {
+      margin-bottom: 35px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '✨';
+      position: absolute;
+      left: -38px;
+      top: -2px;
+      background: #1e3c72;
+      border-radius: 50%;
+      padding: 3px;
+      font-size: 1.1rem;
+      box-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
+    }
+
+    .timeline-year {
+      font-weight: 700;
+      font-size: 1.3rem;
+      color: #82b1ff;
+      margin-bottom: 5px;
+    }
+
+    .timeline-text {
+      background: var(--glass-bg);
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--glass-border);
+      line-height: 1.6;
+      color: #e2f0ff;
+    }
+
+    /* =========================================================
+       9. JOGO DA MEMÓRIA DO AMOR (MINI-GAME)
+       ========================================================= */
+    .game-section {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      padding: 30px 20px;
+      text-align: center;
+      margin-bottom: 50px;
+      backdrop-filter: blur(10px);
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 400px;
+      margin: 20px auto;
+    }
+
+    .game-card {
+      aspect-ratio: 1;
+      background: rgba(11, 29, 58, 0.8);
+      border: 1px solid #4a90e2;
+      border-radius: 12px;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.3s ease, background-color 0.3s;
+    }
+
+    .game-card.flipped {
+      background: rgba(74, 144, 226, 0.4);
+      transform: rotateY(180deg);
+    }
+
+    .game-card.matched {
+      background: rgba(0, 210, 255, 0.3);
+      border-color: #00d2ff;
+      cursor: default;
+    }
+
+    /* =========================================================
+       10. MURAL DE RECORDAÇÕES (FOTOS PLACEHOLDER)
+       ========================================================= */
+    .photo-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-bottom: 50px;
+    }
+
+    .photo-frame {
+      background: var(--glass-bg);
+      border: 2px solid rgba(255, 255, 255, 0.25);
+      border-radius: 16px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .photo-frame:hover {
+      transform: scale(1.03);
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 180px;
+      background: rgba(15, 32, 67, 0.6);
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #82b1ff;
+      font-size: 0.9rem;
+      border: 1px dashed rgba(255, 255, 255, 0.3);
+    }
+
+    .photo-placeholder span {
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
+
+    /* =========================================================
+       11. BOTÃO DE CHUVA INTERATIVA DE EMOJIS
+       ========================================================= */
+    .rain-zone {
+      text-align: center;
+      margin: 50px 0 30px;
+    }
+
+    .rain-btn {
+      background: linear-gradient(45deg, #00d2ff, #4a90e2);
+      border: none;
+      color: white;
+      padding: 18px 36px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(0, 210, 255, 0.5);
+      transition: all 0.3s ease;
+    }
+
+    .rain-btn:hover {
+      scale: 1.06;
+      box-shadow: 0 0 35px rgba(0, 210, 255, 0.8);
+    }
+
+    /* Partículas caindo */
+    .emoji-particle {
+      position: fixed;
+      top: -50px;
+      font-size: 2.2rem;
+      pointer-events: none;
+      animation: fall 4.2s linear forwards;
+      z-index: 99999;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(108vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      font-size: 0.95rem;
+      color: #82b1ff;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Animações Keyframes */
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="starsCanvas"></canvas>
+
+  <header>
+    <h1 class="silver-text">Para a Minha Nega 💙</h1>
+    <p>O meu lugar favorito no mundo é onde você estiver.</p>
+    <div class="bday-badge">
+      👑 Dia da garota mais especial do mundo: <strong>09/11/2009</strong> 🎉
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="timer-section">
+      <h2>Contando cada segundo ao seu lado desde o meio de 2022 ✨</h2>
+      <div class="timer-display">
+        <div class="time-box"><span id="years">0</span><label>Anos</label></div>
+        <div class="time-box"><span id="days">0</span><label>Dias</label></div>
+        <div class="time-box"><span id="hours">0</span><label>Horas</label></div>
+        <div class="time-box"><span id="minutes">0</span><label>Minutos</label></div>
+        <div class="time-box"><span id="seconds">0</span><label>Segundos</label></div>
+      </div>
+    </div>
+
+    <div class="music-card">
+      <h3>🎶 Nossa Trilha Sonora - Henrique & Juliano</h3>
+      <p>Aperte o play para ouvir as nossas músicas favoritas enquanto navega pelo site!</p>
+      <iframe class="music-iframe" 
+        src="https://www.youtube.com/embed/videoseries?list=PL3v6mP3uX23pY2N1N_X0m3N0Z" 
+        title="Henrique e Juliano" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen></iframe>
+    </div>
+
+    <h2 class="section-title silver-text">Cartinhas Secretas para Você 💌</h2>
+    <p class="section-subtitle">Clique nos botões abaixo para abrir cada recado que escrevi para você:</p>
+
+    <div class="letters-grid">
+      <button class="letter-btn" onclick="openModal('carta1')">
+        <span class="icon">👩‍🦱✨</span>
+        <strong>Seus Cabelos & Seu Cheirinho</strong>
+      </button>
+      <button class="letter-btn" onclick="openModal('carta2')">
+        <span class="icon">⏳💋</span>
+        <strong>Nossa História (2022 - 2026)</strong>
+      </button>
+      <button class="letter-btn" onclick="openModal('carta3')">
+        <span class="icon">🍕🧚‍♀️</span>
+        <strong>Seu Jeitinho de Ser</strong>
+      </button>
+      <button class="letter-btn" onclick="openModal('carta4')">
+        <span class="icon">🍰👩‍🍳</span>
+        <strong>Suas Receitas & Gostos</strong>
+      </button>
+      <button class="letter-btn" onclick="openModal('carta5')">
+        <span class="icon">💎💙</span>
+        <strong>Promessa para o Futuro</strong>
+      </button>
+    </div>
+
+    <div id="carta1" class="modal">
+      <div class="modal-content">
+        <h3>Seus Cabelos e Seu Cheirinho... 👩‍🦱✨</h3>
+        <p>Nega, eu precisei criar este espaço só para deixar registrado o quanto você me fascina. Cada detalhe seu me encanta, mas eu preciso confessar: sou completamente apaixonado pelo seu cabelo cacheado. A forma como cada cachinho emoldura o seu rosto e o seu cheirinho único que fica no ar... não existe nada no mundo melhor do que estar perto de você.<br><br>Seu sorriso ilumina tudo ao redor, e ver o carinho imenso que você tem com as crianças só me mostra o quanto o seu coração é puro e lindo. Você é única e me faz a pessoa mais sortuda desse mundo só por ter você por perto.</p>
+        <button class="close-btn" onclick="closeModal('carta1')">Fechar Cartinha 💙</button>
+      </div>
+    </div>
+
+    <div id="carta2" class="modal">
+      <div class="modal-content">
+        <h3>De 2022 ao Primeiro Beijo... ⏳💋</h3>
+        <p>Olhar para trás e ver toda a nossa trajetória é uma das minhas coisas favoritas. Em 2022, a gente brincava como duas crianças, sem nem imaginar o lindo futuro que nos esperava. Passamos por momentos em que ainda brincávamos em 2023, nos reaproximamos para valer em 2024, e em 2025 nossas conversas no celular eram o ponto alto de todos os meus dias.<br><br>Até que chegou 2026... e aquele nosso primeiro beijo foi simplesmente inesquecível! Ficou gravado no meu coração para sempre. Obrigado por ser minha companheira desde a infância e o meu grande amor de hoje.</p>
+        <button class="close-btn" onclick="closeModal('carta2')">Fechar Cartinha 💙</button>
+      </div>
+    </div>
+
+    <div id="carta3" class="modal">
+      <div class="modal-content">
+        <h3>Seu Jeitinho Encantador... 🍕🧚‍♀️</h3>
+        <p>Sabe o que eu mais amo em você? É esse seu jeito fofo de gostar das coisas simples e mágicas da vida. Amo te ver falando das suas séries favoritas, do carinho pela Tinker Bell, pelo Looney Tunes, e até pelas emoções de Diários de um Vampiro!<br><br>Cada detalhe do seu jeito me encanta, desde o momento em que você coloca seus acessórios de prata até o seu brilho único. Te amo infinitamente, minha Nega!</p>
+        <button class="close-btn" onclick="closeModal('carta3')">Fechar Cartinha 💙</button>
+      </div>
+    </div>
+
+    <div id="carta4" class="modal">
+      <div class="modal-content">
+        <h3>Suas Delícias e Receitas... 🍰👩‍🍳</h3>
+        <p>Como não me apaixonar mais a cada dia? Amo ver seu gosto por pizza, maracujá e chocolate branco! E além de tudo, você faz várias receitas que devem ser maravilhosas. Prometo ser seu provador oficial para sempre e elogiar cada prato feito por você com todo o meu carinho!</p>
+        <button class="close-btn" onclick="closeModal('carta4')">Fechar Cartinha 💙</button>
+      </div>
+    </div>
+
+    <div id="carta5" class="modal">
+      <div class="modal-content">
+        <h3>Minha Promessa para Você... 💎💙</h3>
+        <p>Quero estar ao seu lado em cada conquista, em cada risada e em cada momentos da sua vida. Desde que te conheci lá em 2022, meu carinho por você só cresceu. Que a gente continue criando memórias lindas, ouvindo Henrique & Juliano e sendo um do outro para sempre.</p>
+        <button class="close-btn" onclick="closeModal('carta5')">Fechar Cartinha 💙</button>
+      </div>
+    </div>
+
+    <div class="compliment-box">
+      <h3>🎁 Gerador de Motivos para Te Amar</h3>
+      <div class="compliment-text" id="complimentText">
+        Clique no botão abaixo para descobrir um motivo pelo qual eu amo você!
+      </div>
+      <button class="action-btn" onclick="generateCompliment()">Gerar Novo Motivo ✨</button>
+    </div>
+
+    <h2 class="section-title silver-text">Tudo O Que Me Encanta em Você ✨</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>👩‍🦱 Cabelos Cacheados</h3>
+        <p>Sou completamente apaixonado por cada cachinho do seu cabelo e pelo seu cheirinho incomparável.</p>
+      </div>
+      <div class="card">
+        <h3>🧚‍♀️ Tinker Bell & Desenhos</h3>
+        <p>Seu gosto mágico e fofo por **Tinker Bell** e pelo clássico **Looney Tunes** me faz te achar ainda mais graciosa.</p>
+      </div>
+      <div class="card">
+        <h3>🧛‍♂️ Diários de um Vampiro</h3>
+        <p>Amo saber das séries que você gosta e maratonar cada episódio pensando em você.</p>
+      </div>
+      <div class="card">
+        <h3>🍕 Comidinhas Favoritas</h3>
+        <p>Fã incondicional de **pizza**, **maracujá** e **chocolate branco**.</p>
+      </div>
+      <div class="card">
+        <h3>👩‍🍳 Chefinha nas Receitas</h3>
+        <p>Você arrasa fazendo várias receitas que com certeza devem ser uma delícia!</p>
+      </div>
+      <div class="card">
+        <h3>💎 Brilho da Prata</h3>
+        <p>Seus **acessórios de prata** dão aquele toque de elegância único que combina perfeitamente com você.</p>
+      </div>
+      <div class="card">
+        <h3>👶 Carinho com Crianças</h3>
+        <p>Sua paciência e amor imenso pelas crianças mostram quão lindo e puro é o seu coração.</p>
+      </div>
+      <div class="card">
+        <h3>🎶 Henrique & Juliano</h3>
+        <p>Nossa trilha sonora perfeita que embala cada lembrança do nosso amor.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title silver-text">Nossa Linha do Tempo 📖</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">Meio de 2022</div>
+        <div class="timeline-text">Nos conhecemos! Éramos crianças e brincávamos juntos. Foi o começo de tudo.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-text">Ainda brincávamos de vez em quando. Mesmo não sendo direto, o afeto permaneceu vivo.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2024</div>
+        <div class="timeline-text">Primeira vez conversando depois de um tempo distantes. O reencontro especial que mudou o nosso rumo!</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-text">Conversando direto pelo celular todos os dias, tornando nosso laço forte e inseparável.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2026 💋</div>
+        <div class="timeline-text"><strong>O primeiro beijo inesquecível!</strong> O momento mágico que marcou nossas vidas para sempre.</div>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h2 class="silver-text" style="font-family: 'Dancing Script', cursive; font-size: 2.5rem;">🎮 Jogo da Memória do Nosso Amor</h2>
+      <p style="color: #b3d1ff; font-size: 0.9rem; margin-top: 5px;">Encontre os pares dos ícones do nosso relacionamento!</p>
+      <div class="game-grid" id="gameGrid"></div>
+      <p id="gameMessage" style="color: #00d2ff; font-weight: 600; margin-top: 10px; min-height: 25px;"></p>
+    </div>
+
+    <h2 class="section-title silver-text">Nosso Mural de Lembranças 📸</h2>
+    <p class="section-subtitle">Espaço especial reservado para as nossas fotos mais marcantes:</p>
+    <div class="photo-gallery">
+      <div class="photo-frame">
+        <div class="photo-placeholder"><span>🖼️</span>Sua Foto Favorita</div>
+      </div>
+      <div class="photo-frame">
+        <div class="photo-placeholder"><span>👩‍🦱</span>Seus Cabelos Lindos</div>
+      </div>
+      <div class="photo-frame">
+        <div class="photo-placeholder"><span>💋</span>Nosso Momento 2026</div>
+      </div>
+      <div class="photo-frame">
+        <div class="photo-placeholder"><span>✨</span>Nós Dois Juntos</div>
+      </div>
+    </div>
+
+    <div class="rain-zone">
+      <button class="rain-btn" onclick="soltarChuva()">Clique para Chuva de Carinho! 💙✨</button>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Feito com todo o amor do mundo por quem te ama infinitamente, seu Nego. 💙</p>
+  </footer>
+
+  <script>
+    /* ---------------------------------------------------------
+       1. CANVAS DE ESTRELAS NO FUNDO
+       --------------------------------------------------------- */
+    const canvas = document.getElementById('starsCanvas');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    for (let i = 0; i < 120; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 1.8,
+        alpha: Math.random(),
+        speed: Math.random() * 0.02 + 0.005
+      });
+    }
+
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(225, 240, 255, ${star.alpha})`;
+        ctx.fill();
+
+        star.alpha += star.speed;
+        if (star.alpha > 1 || star.alpha < 0) {
+          star.speed = -star.speed;
+        }
+      });
+      requestAnimationFrame(drawStars);
+    }
+    drawStars();
+
+    /* ---------------------------------------------------------
+       2. CONTADOR DE TEMPO (A partir do meio de 2022)
+       --------------------------------------------------------- */
+    const startDate = new Date("2022-07-01T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365.25));
+      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("years").innerText = years;
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    /* ---------------------------------------------------------
+       3. CONTROLE DE MODAIS (CARTINHAS)
+       --------------------------------------------------------- */
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+      }
+    }
+
+    /* ---------------------------------------------------------
+       4. GERADOR DE MOTIVOS PARA TE AMAR
+       --------------------------------------------------------- */
+    const compliments = [
+      "Eu amo a forma como o seu cabelo cacheado emoldura o seu rosto perfeito! 👩‍🦱",
+      "Seu cheirinho único me traz uma paz absurda toda vez que estou com você. 🌸",
+      "Lembrar do nosso primeiro beijo em 2026 me faz sorrir feito bobo! 💋",
+      "Amo o carinho genuíno e doce que você tem pelas crianças. 👶💙",
+      "Ver o seu brilho usando seus acessórios de prata me fascina! 💎",
+      "Amo te ver empolgada falando sobre Tinker Bell e Diários de um Vampiro! 🧚‍♀️",
+      "Te amo por ser minha companheira desde brincadeiras de infância em 2022 até hoje. ⏳",
+      "Amo quando dividimos uma boa pizza ou um chocolate branco juntas! 🍕🍫",
+      "Saber que você faz receitas maravilhosas me dá mais orgulho de você! 👩‍🍳",
+      "Você é a minha pessoa favorita em todo o universo, Nega! 💙✨"
+    ];
+
+    function generateCompliment() {
+      const textElem = document.getElementById('complimentText');
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      textElem.style.opacity = '0';
+      setTimeout(() => {
+        textElem.innerText = compliments[randomIndex];
+        textElem.style.opacity = '1';
+      }, 200);
+    }
+
+    /* ---------------------------------------------------------
+       5. JOGO DA MEMÓRIA
+       --------------------------------------------------------- */
+    const icons = ['👩‍🦱', '🧚‍♀️', '🍕', '💋', '🍫', '💎', '🎶', '👶'];
+    let gameCards = [...icons, ...icons];
+    let flippedCards = [];
+    let matchedPairs = 0;
+
+    function shuffle(array) {
+      return array.sort(() => Math.random() - 0.5);
+    }
+
+    function initGame() {
+      const grid = document.getElementById('gameGrid');
+      grid.innerHTML = '';
+      shuffle(gameCards).forEach((icon, index) => {
+        const card = document.createElement('div');
+        card.classList.add('game-card');
+        card.dataset.icon = icon;
+        card.dataset.index = index;
+        card.innerText = '❓';
+        card.addEventListener('click', handleCardClick);
+        grid.appendChild(card);
+      });
+    }
+
+    function handleCardClick(e) {
+      const card = e.currentTarget;
+      if (flippedCards.length < 2 && !card.classList.contains('flipped') && !card.classList.contains('matched')) {
+        card.classList.add('flipped');
+        card.innerText = card.dataset.icon;
+        flippedCards.push(card);
+
+        if (flippedCards.length === 2) {
+          checkMatch();
+        }
+      }
+    }
+
+    function checkMatch() {
+      const [card1, card2] = flippedCards;
+      if (card1.dataset.icon === card2.dataset.icon) {
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+        matchedPairs++;
+        flippedCards = [];
+        if (matchedPairs === icons.length) {
+          document.getElementById('gameMessage').innerText = '🎉 Parabéns, Nega! Você completou o jogo do nosso amor!';
+          soltarChuva();
+        }
+      } else {
+        setTimeout(() => {
+          card1.classList.remove('flipped');
+          card2.classList.remove('flipped');
+          card1.innerText = '❓';
+          card2.innerText = '❓';
+          flippedCards = [];
+        }, 800);
+      }
+    }
+    initGame();
+
+    /* ---------------------------------------------------------
+       6. CHUVA INTERATIVA DE EMOJIS
+       --------------------------------------------------------- */
+    function soltarChuva() {
+      const emojis = ['💙', '✨', '🧚‍♀️', '🍕', '🍫', '💋', '🌸', '👑', '👩‍🦱', '💎'];
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const emoji = document.createElement('div');
+          emoji.classList.add('emoji-particle');
+          emoji.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+          emoji.style.left = Math.random() * 95 + 'vw';
+          emoji.style.animationDuration = (Math.random() * 2 + 3) + 's';
+          document.body.appendChild(emoji);
+
+          setTimeout(() => { emoji.remove(); }, 4200);
+        }, i * 90);
+      }
+    }
+  </script>
+</body>
+</html>
